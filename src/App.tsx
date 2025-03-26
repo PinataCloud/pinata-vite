@@ -25,7 +25,7 @@ function App() {
 
     try {
       setUploadStatus('Getting upload URL...')
-      const urlResponse = await fetch('http://localhost:8787/upload_url')
+      const urlResponse = await fetch(`${import.meta.env.VITE_SERVER_URL}/upload_url`)
       const data = await urlResponse.json()
 
       setUploadStatus('Uploading file...')
