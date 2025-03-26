@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
+import pinataLogo from '/pinnie.png'
 import './App.css'
 import { PinataSDK } from 'pinata'
 
@@ -25,7 +26,12 @@ function App() {
 
     try {
       setUploadStatus('Getting upload URL...')
-      const urlResponse = await fetch(`${import.meta.env.VITE_SERVER_URL}/upload_url`)
+      const urlResponse = await fetch(`${import.meta.env.VITE_SERVER_URL}/upload_url`, {
+        method: "GET",
+        headers: {
+          // Handle authorization here
+        }
+      })
       const data = await urlResponse.json()
 
       setUploadStatus('Uploading file...')
@@ -55,8 +61,11 @@ function App() {
         <a href="https://react.dev" target="_blank">
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
+        <a href="https://pinata.cloud" target="_blank">
+          <img src={pinataLogo} className="logo pinata" alt="Pinata logo" />
+        </a>
       </div>
-      <h1>Vite + React</h1>
+      <h1>Vite + React + Pinata</h1>
       <div className="card">
         <input type="file" onChange={handleFileChange} />
         <button onClick={handleUpload} disabled={!file}>
